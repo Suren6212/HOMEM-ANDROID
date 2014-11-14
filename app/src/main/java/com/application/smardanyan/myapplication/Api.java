@@ -12,6 +12,8 @@ public class Api {
 
     public static List<Category> Categories;
 
+    public static boolean isConnected;
+
     public static class Category {
         int id;
         String key;
@@ -40,9 +42,11 @@ public class Api {
                     Log.d("!!!!!!!!!!!!!!!!!!", ": " + category.id + " (" + category.key + ")");
                 }
             */
+            isConnected = true;
         }
         catch(Exception e)
         {
+            isConnected = false;
             Log.d("!!!!!!!!!!!!!!!","Exception: " + e);
         }
 
