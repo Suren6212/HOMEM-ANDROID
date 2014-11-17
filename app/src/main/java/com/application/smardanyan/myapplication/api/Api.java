@@ -5,14 +5,14 @@ import java.util.List;
 import android.util.Log;
 
 import com.application.smardanyan.myapplication.data.Category;
+import com.application.smardanyan.myapplication.data.Data;
+import com.application.smardanyan.myapplication.data.Master;
 
 import retrofit.RestAdapter;
 import retrofit.http.GET;
 
 public class Api {
     private static final String API_URL = "http://172.24.20.188:3000/api/v1";
-
-    public static List<Category> Categories;
 
     public static boolean isConnected;
 
@@ -21,18 +21,30 @@ public class Api {
         List<Category> Categories();
     }
 
-    public static RestAdapter getRestAdapter () {
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(API_URL)
-                .build();
-        return restAdapter;
+    public interface MasterInt {
+        @GET("/masters")
+        List<Master> Masters();
     }
 
-    public static void getCategories() {
+    public static void getData() {
         try{
-            CategoryInt categoryInt = getRestAdapter().create(CategoryInt.class);
-            Categories = categoryInt.Categories();
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setEndpoint(API_URL)
+                    .build();
+
+            CategoryInt categoryInt = restAdapter.create(CategoryInt.class);
+            Data.categories = categoryInt.Categories();
+
+            MasterInt masterInt = restAdapter.create(MasterInt.class);
+            Data.masters = masterInt.Masters();
+
+            /*
+            for (Master master : Data.masters) {
+                Log.d("!!!!!!!!!!!!!!!","Master: " + master.email);
+            }
+            */
+
             isConnected = true;
         }
         catch(Exception e)

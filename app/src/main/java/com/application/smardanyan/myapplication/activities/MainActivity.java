@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import com.application.smardanyan.myapplication.R;
 import com.application.smardanyan.myapplication.api.Api;
 import com.application.smardanyan.myapplication.fragments.CategoriesSectionFragment;
+import com.application.smardanyan.myapplication.fragments.LastUpdatesSectionFragment;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -30,7 +31,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     public class Backend extends AsyncTask<MainActivity,Integer,String> {
         @Override
         protected String doInBackground(MainActivity... params) {
-            Api.getCategories();
+            Api.getData();
             return "done";
         }
         @Override
@@ -118,6 +119,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             switch (i) {
                 case 0:
                     return new CategoriesSectionFragment();
+                case 1:
+                    return new LastUpdatesSectionFragment();
 
                 default:
                     // The other sections of the app are dummy placeholders.
