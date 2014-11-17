@@ -1,4 +1,4 @@
-package com.application.smardanyan.myapplication;
+package com.application.smardanyan.myapplication.fragments;
 
 
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.application.smardanyan.myapplication.R;
+
+import com.application.smardanyan.myapplication.adapters.ImageAdapter;
 
 
 public class CategoriesSectionFragment extends Fragment {
@@ -21,7 +24,7 @@ public class CategoriesSectionFragment extends Fragment {
     	rootView = inflater.inflate(R.layout.fragment_section_categories, container, false);
         
         GridView gridview = (GridView) rootView.findViewById(R.id.gridview); 
-        gridview.setAdapter(new ImageAdapter(getActivity())); 
+        gridview.setAdapter(new ImageAdapter(getActivity()));
         
 
         return rootView;

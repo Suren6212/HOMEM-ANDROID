@@ -1,12 +1,13 @@
-package com.application.smardanyan.myapplication;
+package com.application.smardanyan.myapplication.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import retrofit.http.GET;
-import retrofit.http.Path;
+import com.application.smardanyan.myapplication.R;
+import com.application.smardanyan.myapplication.api.Api;
+import com.application.smardanyan.myapplication.fragments.CategoriesSectionFragment;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.AsyncTask;
@@ -19,7 +20,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.util.Log;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
