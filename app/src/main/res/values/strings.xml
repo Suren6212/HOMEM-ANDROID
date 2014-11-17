@@ -10,5 +10,14 @@
     <string name="demo_collection">Demo Collection</string>
 
     <string name="unable_to_connect">Unable to connect to the server</string>
+    <string name="all">All categories</string>
+    <string name="central_heating_fixing">Central heating fixing</string>
+    <string name="electrician_service">Electrician service</string>
+    <string name="foreman">Foreman</string>
+    <string name="household_fixing">Household fixing</string>
+    <string name="labor_force">Labor force</string>
+    <string name="plumber_service">Plumber service</string>
+
+
 
 </resources>
