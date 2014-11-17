@@ -1,12 +1,13 @@
-package com.application.smardanyan.myapplication;
+package com.application.smardanyan.myapplication.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import com.application.smardanyan.myapplication.R;
 
 public class ImageAdapter extends BaseAdapter {
    private Context mContext;

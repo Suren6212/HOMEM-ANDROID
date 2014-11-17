@@ -1,11 +1,10 @@
-package com.application.smardanyan.myapplication;
+package com.application.smardanyan.myapplication.api;
 
 import java.util.List;
 
 import android.util.Log;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
-import retrofit.http.Path;
 
 public class Api {
     private static final String API_URL = "http://172.24.20.188:3000/api/v1";
