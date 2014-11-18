@@ -41,37 +41,71 @@ public class ListAdapter extends ArrayAdapter<String> {
 
         for (Master master : masters) {
             if (category_id == 0 || master.master_categories.indexOf(category_key) != -1) {
-                String descriptionStr[] = master.description.split(" ");
-                String description = "";
-                if (descriptionStr.length > 5) {
-                    for (int i = 0; i < 5; i++)
-                        description += descriptionStr[i] + " ";
-                } else {
-                    description = master.description;
-                }
-
-                String dobStr[] = master.dob.split("-");
-                String age;
-                if (dobStr.length > 0) {
-                    Calendar calendar = Calendar.getInstance();
-                    int currentYear = calendar.get(Calendar.YEAR);
-                    int birthYear = Integer.parseInt(dobStr[0]);
-                    age = Integer.toString(currentYear - birthYear);
-                } else {
-                    age = "-";
-                }
-
                 Item item = new Item(
                         master.first_name + " " + master.last_name,
-                        master.master_categories,
-                        "Age: " + age,
-                        description + " ...",
+                        getCategories(master.master_categories),
+                        getAge(master.dob),
+                        getDescription(master.description),
                         "Tags: " + master.master_tags
                 );
                 items.add(item);
             }
         }
 
+    }
+
+    private String getDescription(String full_desc) {
+        String descriptionStr[] = full_desc.split(" ");
+        String short_desc = "";
+        if (descriptionStr.length > 5) {
+            for (int i = 0; i < 5; i++)
+                short_desc += descriptionStr[i] + " ";
+            short_desc += "...";
+        } else {
+            short_desc = full_desc;
+        }
+        return short_desc;
+    }
+
+    private String getAge(String birth_date) {
+        String bdStr[] = birth_date.split("-");
+        String age;
+        if (bdStr.length > 0) {
+            Calendar calendar = Calendar.getInstance();
+            int currentYear = calendar.get(Calendar.YEAR);
+            int birthYear = Integer.parseInt(bdStr[0]);
+            age = Integer.toString(currentYear - birthYear);
+        } else {
+            age = "-";
+        }
+        return "Age: " + age;
+    }
+
+    private String getCategories(String categories) {
+        String categoriesStr[] = categories.split(",");
+        String formattedTxt = "";
+        if (categoriesStr.length == 0) {
+            int textKey = context.getResources().getIdentifier (categories,"string",context.getPackageName());
+            if (textKey == 0) {
+                formattedTxt = categories;
+            } else {
+                formattedTxt = context.getResources().getString(textKey);
+            }
+        } else {
+            for (int i=0; i<categoriesStr.length; i++) {
+                int textKey = context.getResources().getIdentifier (categoriesStr[i],"string",context.getPackageName());
+                if (textKey == 0) {
+                    formattedTxt += categoriesStr[i];
+                } else {
+                    formattedTxt += context.getResources().getString(textKey);
+                }
+                if (i != categoriesStr.length-1) {
+                    formattedTxt += ", ";
+                }
+            }
+
+        }
+        return formattedTxt;
     }
 
     @Override
