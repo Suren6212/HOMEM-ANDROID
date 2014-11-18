@@ -18,6 +18,7 @@ public class CategoryActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
+        getActionBar().setDisplayShowTitleEnabled(false);
 
         Intent i = getIntent();
         int category_id = Integer.parseInt(i.getExtras().getString("category_id"));
