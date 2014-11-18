@@ -5,6 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
     <string name="unable_to_connect">Unable to connect to the server</string>
+    <string name="categories">Categories</string>
+    <string name="last_updates">Last updates</string>
+    <string name="undefined">Undefined</string>
 
     <string name="all">All categories</string>
     <string name="central_heating_fixing">Central heating fixing</string>

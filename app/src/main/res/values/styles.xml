@@ -1,8 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.DeviceDefault.Light">
         <!-- Customize your theme here. -->
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+    </style>
+
+    <style name="MyActionBarTabText">
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>
