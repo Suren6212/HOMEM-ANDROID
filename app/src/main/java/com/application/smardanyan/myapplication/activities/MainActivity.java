@@ -74,7 +74,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     // listener for when this tab is selected.
                     actionBar.addTab(
                             actionBar.newTab()
-                                    .setText(mAppSectionsPagerAdapter.getPageTitle(i))
+                                    .setText( getResources().getString(getResources().getIdentifier((String)mAppSectionsPagerAdapter.getPageTitle(i),"string",getPackageName())) )
                                     .setTabListener(MainActivity.this));
                 }
             } else {
@@ -141,11 +141,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Categories";
+                    return "categories";
                 case 1:
-                    return "Last updates";
+                    return "last_updates";
                 default:
-                    return "Undefined";
+                    return "undefined";
             }
         }
 
