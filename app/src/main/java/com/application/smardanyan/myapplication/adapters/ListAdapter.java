@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.application.smardanyan.myapplication.R;
+import com.application.smardanyan.myapplication.data.Category;
+import com.application.smardanyan.myapplication.data.Data;
 import com.application.smardanyan.myapplication.data.Master;
 
 import java.util.ArrayList;
@@ -21,45 +23,53 @@ public class ListAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private List<Item> items = new ArrayList<Item>();
 
-    public ListAdapter(Activity context, List<Master> masters) {
+    public ListAdapter(Activity context, List<Master> masters, int category_id) {
         super(context, R.layout.listview_item);
         // TODO Auto-generated constructor stub
 
         this.context=context;
 
+
+        String category_key="";
+        for (Category category: Data.categories) {
+            if (category.id == category_id) {
+                category_key = category.key;
+                break;
+            }
+        }
+
+
         for (Master master : masters) {
+            if (category_id == 0 || master.master_categories.indexOf(category_key) != -1) {
+                String descriptionStr[] = master.description.split(" ");
+                String description = "";
+                if (descriptionStr.length > 5) {
+                    for (int i = 0; i < 5; i++)
+                        description += descriptionStr[i] + " ";
+                } else {
+                    description = master.description;
+                }
 
-            String descriptionStr[] = master.description.split(" ");
-            String description = "";
-            if (descriptionStr.length > 5) {
-                for (int i = 0; i < 5; i++)
-                    description += descriptionStr[i] + " ";
-            } else {
-                description = master.description;
+                String dobStr[] = master.dob.split("-");
+                String age;
+                if (dobStr.length > 0) {
+                    Calendar calendar = Calendar.getInstance();
+                    int currentYear = calendar.get(Calendar.YEAR);
+                    int birthYear = Integer.parseInt(dobStr[0]);
+                    age = Integer.toString(currentYear - birthYear);
+                } else {
+                    age = "-";
+                }
+
+                Item item = new Item(
+                        master.first_name + " " + master.last_name,
+                        master.master_categories,
+                        "Age: " + age,
+                        description + " ...",
+                        "Tags: " + master.master_tags
+                );
+                items.add(item);
             }
-
-
-            String dobStr[] =  master.dob.split("-");
-            String age;
-            if (dobStr.length > 0) {
-                Calendar calendar = Calendar.getInstance();
-                int currentYear = calendar.get(Calendar.YEAR);
-                int birthYear = Integer.parseInt(dobStr[0]);
-                age = Integer.toString(currentYear - birthYear);
-            } else {
-                age = "-";
-            }
-
-
-
-            Item item = new Item(
-                master.first_name + " " + master.last_name,
-                master.master_categories,
-                "Age: " + age,
-                description + " ...",
-                "Tags: " + master.master_tags
-            );
-            items.add(item);
         }
 
     }

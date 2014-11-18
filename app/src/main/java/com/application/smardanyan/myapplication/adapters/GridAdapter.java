@@ -26,7 +26,7 @@ public class GridAdapter extends BaseAdapter {
     public GridAdapter(Context context, List<Category> categories) {
         inflater = LayoutInflater.from(context);
 
-        items.add(new Item(context.getResources().getString(R.string.all), R.drawable.all));
+        items.add(new Item(context.getResources().getString(R.string.all), R.drawable.all, 0));
         for (Category category : categories) {
             int imageKey = context.getResources().getIdentifier(category.key, "drawable", context.getPackageName());
             if (imageKey == 0) {
@@ -39,7 +39,7 @@ public class GridAdapter extends BaseAdapter {
             } else {
                 text = context.getResources().getString(textKey);
             }
-            items.add(new Item(text, imageKey));
+            items.add(new Item(text, imageKey, category.id));
         }
     }
 
@@ -78,16 +78,18 @@ public class GridAdapter extends BaseAdapter {
         picture.setImageResource(item.drawableId);
         name.setText(item.name);
 
-        v.setContentDescription(item.name);
+        v.setContentDescription(Integer.toString(item.id));
 
         return v;
     }
 
     private class Item {
+        final int id;
         final String name;
         final int drawableId;
 
-        Item(String name, int drawableId) {
+        Item(String name, int drawableId, int id) {
+            this.id = id;
             this.name = name;
             this.drawableId = drawableId;
         }

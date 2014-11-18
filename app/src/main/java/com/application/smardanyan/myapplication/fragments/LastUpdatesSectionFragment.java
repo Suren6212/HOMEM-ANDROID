@@ -24,7 +24,7 @@ public class LastUpdatesSectionFragment extends Fragment {
 
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
-        listView.setAdapter(new ListAdapter(getActivity(), Data.masters));
+        listView.setAdapter(new ListAdapter(getActivity(), Data.masters, 0));
 
         /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
