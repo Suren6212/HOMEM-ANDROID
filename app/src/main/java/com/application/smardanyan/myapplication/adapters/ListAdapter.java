@@ -11,13 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.application.smardanyan.myapplication.R;
-import com.application.smardanyan.myapplication.data.Category;
 import com.application.smardanyan.myapplication.data.Master;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<String> {

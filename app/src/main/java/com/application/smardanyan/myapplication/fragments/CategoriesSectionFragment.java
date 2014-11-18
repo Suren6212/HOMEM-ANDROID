@@ -14,7 +14,6 @@ import com.application.smardanyan.myapplication.R;
 import com.application.smardanyan.myapplication.adapters.GridAdapter;
 
 
-import com.application.smardanyan.myapplication.api.Api;
 import com.application.smardanyan.myapplication.data.Data;
 
 

@@ -5,7 +5,6 @@ package com.application.smardanyan.myapplication.adapters;
  */
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,6 @@ import com.application.smardanyan.myapplication.data.Category;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class GridAdapter extends BaseAdapter {
     private List<Item> items = new ArrayList<Item>();
