@@ -1,6 +1,7 @@
 package com.application.smardanyan.myapplication.fragments;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.application.smardanyan.myapplication.R;
+import com.application.smardanyan.myapplication.activities.CategoryActivity;
 import com.application.smardanyan.myapplication.adapters.GridAdapter;
 
 
@@ -32,8 +34,10 @@ public class CategoriesSectionFragment extends Fragment {
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                //TODO need to create new page
-                Toast.makeText(getActivity(), v.getContentDescription(), Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(), CategoryActivity.class);
+                // Pass image index
+                i.putExtra("category_id",v.getContentDescription());
+                startActivity(i);
             }
         });
 
