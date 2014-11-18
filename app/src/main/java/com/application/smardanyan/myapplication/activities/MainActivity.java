@@ -88,6 +88,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new Backend().execute();
+        getActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
