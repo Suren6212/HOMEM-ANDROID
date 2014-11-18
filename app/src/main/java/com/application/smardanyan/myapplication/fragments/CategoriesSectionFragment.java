@@ -30,7 +30,7 @@ public class CategoriesSectionFragment extends Fragment {
     	rootView = inflater.inflate(R.layout.fragment_section_categories, container, false);
 
         GridView gridView = (GridView)rootView.findViewById(R.id.gridview);
-        gridView.setAdapter(new GridAdapter(getActivity(), Data.categories));
+        gridView.setAdapter(new GridAdapter(getActivity(), Data.categories, Data.masters));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
