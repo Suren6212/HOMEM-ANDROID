@@ -44,10 +44,10 @@ public class ListAdapter extends ArrayAdapter<String> {
                 Item item = new Item(
                         master.master_id,
                         master.first_name + " " + master.last_name,
-                        Data.getCategories(context, master.master_categories),
-                        Data.getAge(master.dob),
-                        Data.getShortDescription(master.description),
-                        "Tags: " + master.master_tags,
+                        Master.getCategories(context, master.master_categories),
+                        Master.getAge(context, master.dob),
+                        Master.getShortDescription(master.description),
+                        context.getResources().getString(R.string.tags) + ": " + master.master_tags,
                         master.rating
                 );
                 items.add(item);
@@ -55,7 +55,6 @@ public class ListAdapter extends ArrayAdapter<String> {
         }
 
     }
-
 
     @Override
     public int getCount() {
