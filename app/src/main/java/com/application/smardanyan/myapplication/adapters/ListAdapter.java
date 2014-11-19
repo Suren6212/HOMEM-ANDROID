@@ -2,12 +2,16 @@ package com.application.smardanyan.myapplication.adapters;
 
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.application.smardanyan.myapplication.R;
@@ -46,7 +50,8 @@ public class ListAdapter extends ArrayAdapter<String> {
                         getCategories(master.master_categories),
                         getAge(master.dob),
                         getDescription(master.description),
-                        "Tags: " + master.master_tags
+                        "Tags: " + master.master_tags,
+                        master.rating
                 );
                 items.add(item);
             }
@@ -125,6 +130,8 @@ public class ListAdapter extends ArrayAdapter<String> {
         TextView ageTxt = (TextView) rowView.findViewById(R.id.age);
         TextView descriptionTxt = (TextView) rowView.findViewById(R.id.description);
         TextView tagsTxt = (TextView) rowView.findViewById(R.id.tags);
+        TextView ratingTxt = (TextView) rowView.findViewById(R.id.rating);
+        RatingBar ratingVal = (RatingBar) rowView.findViewById(R.id.ratingBar);
 
         Item item = items.get(i);
 
@@ -133,6 +140,11 @@ public class ListAdapter extends ArrayAdapter<String> {
         ageTxt.setText(item.age);
         descriptionTxt.setText(item.description);
         tagsTxt.setText(item.tags);
+        ratingTxt.setText(Float.toString(item.rating));
+
+        LayerDrawable stars = (LayerDrawable) ratingVal.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
+        ratingVal.setRating(item.rating);
 
         return rowView;
 
@@ -144,13 +156,15 @@ public class ListAdapter extends ArrayAdapter<String> {
         final String age;
         final String description;
         final String tags;
+        final float rating;
 
-        Item(String full_name, String categories,String age,String description,String tags) {
+        Item(String full_name, String categories,String age,String description,String tags, float rating) {
             this.full_name = full_name;
             this.categories = categories;
             this.age = age;
             this.description = description;
             this.tags = tags;
+            this.rating = rating;
         }
     }
 }
