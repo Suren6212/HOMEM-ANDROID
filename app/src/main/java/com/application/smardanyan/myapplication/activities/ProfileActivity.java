@@ -45,16 +45,25 @@ public class ProfileActivity extends Activity {
             full_nameTxt.setText(item.first_name + " " + item.last_name);
 
             TextView categoriesTxt = (TextView) findViewById(R.id.categories);
-            categoriesTxt.setText(Data.getCategories(ProfileActivity.this,item.master_categories));
+            categoriesTxt.setText(Master.getCategories(ProfileActivity.this,item.master_categories));
 
             TextView ageTxt = (TextView) findViewById(R.id.age);
-            ageTxt.setText(Data.getAge(item.dob));
+            ageTxt.setText(Master.getAge(ProfileActivity.this,item.dob));
 
             TextView descriptionTxt = (TextView) findViewById(R.id.description);
             descriptionTxt.setText(item.description);
 
             TextView tagsTxt = (TextView) findViewById(R.id.tags);
-            tagsTxt.setText("Tags: " + item.master_tags);
+            tagsTxt.setText(getResources().getString(R.string.tags) + ": " + item.master_tags);
+
+            TextView typeTxt = (TextView) findViewById(R.id.type);
+            typeTxt.setText(getResources().getString(R.string.type) + ": " + item.type);
+
+            TextView phoneTxt = (TextView) findViewById(R.id.phone);
+            phoneTxt.setText(getResources().getString(R.string.phone) + ": " + item.master_phones);
+
+            TextView emailTxt = (TextView) findViewById(R.id.email);
+            emailTxt.setText(getResources().getString(R.string.email) + ": " + item.email);
 
             TextView ratingTxt = (TextView) findViewById(R.id.rating);
             ratingTxt.setText(Float.toString(item.rating));
@@ -65,8 +74,6 @@ public class ProfileActivity extends Activity {
             stars.getDrawable(2).setColorFilter(Color.rgb(255, 165, 0), PorterDuff.Mode.SRC_ATOP);
 
 
-            TextView idTxt = (TextView) findViewById(R.id.age);
-            idTxt.setText(Data.getAge(item.dob));
         }
     }
 }
