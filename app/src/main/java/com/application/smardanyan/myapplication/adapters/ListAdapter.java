@@ -29,10 +29,7 @@ public class ListAdapter extends ArrayAdapter<String> {
 
     public ListAdapter(Activity context, List<Master> masters, int category_id) {
         super(context, R.layout.listview_item);
-        // TODO Auto-generated constructor stub
-
         this.context=context;
-
 
         String category_key="";
         for (Category category: Data.categories) {
@@ -42,14 +39,14 @@ public class ListAdapter extends ArrayAdapter<String> {
             }
         }
 
-
         for (Master master : masters) {
             if (category_id == 0 || master.master_categories.indexOf(category_key) != -1) {
                 Item item = new Item(
+                        master.master_id,
                         master.first_name + " " + master.last_name,
-                        getCategories(master.master_categories),
-                        getAge(master.dob),
-                        getDescription(master.description),
+                        Data.getCategories(context, master.master_categories),
+                        Data.getAge(master.dob),
+                        Data.getShortDescription(master.description),
                         "Tags: " + master.master_tags,
                         master.rating
                 );
@@ -59,59 +56,6 @@ public class ListAdapter extends ArrayAdapter<String> {
 
     }
 
-    private String getDescription(String full_desc) {
-        String descriptionStr[] = full_desc.split(" ");
-        String short_desc = "";
-        if (descriptionStr.length > 5) {
-            for (int i = 0; i < 5; i++)
-                short_desc += descriptionStr[i] + " ";
-            short_desc += "...";
-        } else {
-            short_desc = full_desc;
-        }
-        return short_desc;
-    }
-
-    private String getAge(String birth_date) {
-        String bdStr[] = birth_date.split("-");
-        String age;
-        if (bdStr.length > 0) {
-            Calendar calendar = Calendar.getInstance();
-            int currentYear = calendar.get(Calendar.YEAR);
-            int birthYear = Integer.parseInt(bdStr[0]);
-            age = Integer.toString(currentYear - birthYear);
-        } else {
-            age = "-";
-        }
-        return "Age: " + age;
-    }
-
-    private String getCategories(String categories) {
-        String categoriesStr[] = categories.split(",");
-        String formattedTxt = "";
-        if (categoriesStr.length == 0) {
-            int textKey = context.getResources().getIdentifier (categories,"string",context.getPackageName());
-            if (textKey == 0) {
-                formattedTxt = categories;
-            } else {
-                formattedTxt = context.getResources().getString(textKey);
-            }
-        } else {
-            for (int i=0; i<categoriesStr.length; i++) {
-                int textKey = context.getResources().getIdentifier (categoriesStr[i],"string",context.getPackageName());
-                if (textKey == 0) {
-                    formattedTxt += categoriesStr[i];
-                } else {
-                    formattedTxt += context.getResources().getString(textKey);
-                }
-                if (i != categoriesStr.length-1) {
-                    formattedTxt += ", ";
-                }
-            }
-
-        }
-        return formattedTxt;
-    }
 
     @Override
     public int getCount() {
@@ -146,11 +90,14 @@ public class ListAdapter extends ArrayAdapter<String> {
         stars.getDrawable(2).setColorFilter(Color.rgb(255,165,0), PorterDuff.Mode.SRC_ATOP);
         ratingVal.setRating(item.rating);
 
+        rowView.setContentDescription(Integer.toString(item.master_id));
+
         return rowView;
 
     };
 
     private class Item {
+        final int master_id;
         final String full_name;
         final String categories;
         final String age;
@@ -158,7 +105,9 @@ public class ListAdapter extends ArrayAdapter<String> {
         final String tags;
         final float rating;
 
-        Item(String full_name, String categories,String age,String description,String tags, float rating) {
+
+        Item(int master_id, String full_name, String categories,String age,String description,String tags, float rating) {
+            this.master_id = master_id;
             this.full_name = full_name;
             this.categories = categories;
             this.age = age;
