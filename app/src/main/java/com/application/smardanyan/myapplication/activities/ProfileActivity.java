@@ -48,22 +48,22 @@ public class ProfileActivity extends Activity {
             categoriesTxt.setText(Master.getCategories(ProfileActivity.this,item.master_categories));
 
             TextView ageTxt = (TextView) findViewById(R.id.age);
-            ageTxt.setText(Master.getAge(ProfileActivity.this,item.dob));
+            ageTxt.setText(Master.getAge(item.dob));
 
             TextView descriptionTxt = (TextView) findViewById(R.id.description);
             descriptionTxt.setText(item.description);
 
             TextView tagsTxt = (TextView) findViewById(R.id.tags);
-            tagsTxt.setText(getResources().getString(R.string.tags) + ": " + item.master_tags);
+            tagsTxt.setText(item.master_tags);
 
             TextView typeTxt = (TextView) findViewById(R.id.type);
-            typeTxt.setText(getResources().getString(R.string.type) + ": " + item.type);
+            typeTxt.setText(Master.getType(ProfileActivity.this,item.type));
 
             TextView phoneTxt = (TextView) findViewById(R.id.phone);
-            phoneTxt.setText(getResources().getString(R.string.phone) + ": " + item.master_phones);
+            phoneTxt.setText(item.master_phones);
 
             TextView emailTxt = (TextView) findViewById(R.id.email);
-            emailTxt.setText(getResources().getString(R.string.email) + ": " + item.email);
+            emailTxt.setText(item.email);
 
             TextView ratingTxt = (TextView) findViewById(R.id.rating);
             ratingTxt.setText(Float.toString(item.rating));
