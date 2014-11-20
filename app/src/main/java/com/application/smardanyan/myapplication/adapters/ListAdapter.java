@@ -45,9 +45,9 @@ public class ListAdapter extends ArrayAdapter<String> {
                         master.master_id,
                         master.first_name + " " + master.last_name,
                         Master.getCategories(context, master.master_categories),
-                        Master.getAge(context, master.dob),
+                        Master.getAge(master.dob),
                         Master.getShortDescription(master.description),
-                        context.getResources().getString(R.string.tags) + ": " + master.master_tags,
+                        master.master_tags,
                         master.rating
                 );
                 items.add(item);

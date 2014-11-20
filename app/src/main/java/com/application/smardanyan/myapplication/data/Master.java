@@ -45,7 +45,7 @@ public class Master {
         return short_desc;
     }
 
-    public static String getAge(Activity context,String birth_date) {
+    public static String getAge(String birth_date) {
         String bdStr[] = birth_date.split("-");
         String age;
         if (bdStr.length > 0) {
@@ -56,7 +56,7 @@ public class Master {
         } else {
             age = "-";
         }
-        return context.getResources().getString(R.string.age) + ": " + age;
+        return age;
     }
 
     public static String getCategories(Activity context, String categories) {
@@ -81,6 +81,17 @@ public class Master {
                     formattedTxt += ", ";
                 }
             }
+        }
+        return formattedTxt;
+    }
+
+    public static String getType(Activity context, String type) {
+        String formattedTxt = "";
+        int textKey = context.getResources().getIdentifier (type,"string",context.getPackageName());
+        if (textKey == 0) {
+            formattedTxt = type;
+        } else {
+            formattedTxt = context.getResources().getString(textKey);
         }
         return formattedTxt;
     }

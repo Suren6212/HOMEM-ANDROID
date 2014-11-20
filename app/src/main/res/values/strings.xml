@@ -17,11 +17,14 @@
     <string name="labor_force">Labor force</string>
     <string name="plumber_service">Plumber service</string>
 
-    <string name="age">Age</string>
-    <string name="type">Type</string>
-    <string name="location">Location</string>
-    <string name="phone">Phone</string>
-    <string name="email">Email</string>
-    <string name="tags">Tags</string>
+    <string name="age">Age:</string>
+    <string name="type">Type:</string>
+    <string name="location">Location:</string>
+    <string name="phone">Phone:</string>
+    <string name="email">Email:</string>
+    <string name="tags">Tags:</string>
+
+    <string name="INDIVIDUAL">Individual</string>
+    <string name="COMPANY">Company</string>
 
 </resources>
