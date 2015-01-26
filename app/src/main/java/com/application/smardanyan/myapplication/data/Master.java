@@ -1,6 +1,7 @@
 package com.application.smardanyan.myapplication.data;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.application.smardanyan.myapplication.R;
 
@@ -46,17 +47,20 @@ public class Master {
     }
 
     public static String getAge(String birth_date) {
-        String bdStr[] = birth_date.split("-");
-        String age;
-        if (bdStr.length > 0) {
-            Calendar calendar = Calendar.getInstance();
-            int currentYear = calendar.get(Calendar.YEAR);
-            int birthYear = Integer.parseInt(bdStr[0]);
-            age = Integer.toString(currentYear - birthYear);
-        } else {
-            age = "-";
+        if (birth_date != null) {
+            String bdStr[] = birth_date.split("-");
+            String age;
+            if (bdStr.length > 0) {
+                Calendar calendar = Calendar.getInstance();
+                int currentYear = calendar.get(Calendar.YEAR);
+                int birthYear = Integer.parseInt(bdStr[0]);
+                age = Integer.toString(currentYear - birthYear);
+            } else {
+                age = "-";
+            }
+            return age;
         }
-        return age;
+        return "-";
     }
 
     public static String getCategories(Activity context, String categories) {
