@@ -28,15 +28,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
 
-    public class Backend extends AsyncTask<MainActivity,Integer,String> {
+    public class Backend extends AsyncTask<MainActivity, Integer, String> {
         @Override
         protected String doInBackground(MainActivity... params) {
             Api.getData();
             return "done";
         }
+
         @Override
-        protected void onPostExecute(String k)
-        {
+        protected void onPostExecute(String k) {
             if (Api.isConnected) {
                 setContentView(R.layout.activity_main);
                 // Create the adapter that will return a fragment for each of the three primary sections
@@ -74,7 +74,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
                     // listener for when this tab is selected.
                     actionBar.addTab(
                             actionBar.newTab()
-                                    .setText( getResources().getString(getResources().getIdentifier((String)mAppSectionsPagerAdapter.getPageTitle(i),"string",getPackageName())) )
+                                    .setText(getResources().getString(getResources().getIdentifier((String) mAppSectionsPagerAdapter.getPageTitle(i), "string", getPackageName())))
                                     .setTabListener(MainActivity.this));
                 }
             } else {
